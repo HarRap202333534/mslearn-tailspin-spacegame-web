@@ -65,3 +65,8 @@ steps:
   inputs:
     command: 'publish'
     arguments: '--no-build --configuration Debug --output /tmp/Release'
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish build artifacts'
+  condition: succeeded()
