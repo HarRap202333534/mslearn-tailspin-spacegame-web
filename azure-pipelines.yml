@@ -23,7 +23,7 @@ steps:
   displayName: 'node-sass'
 
 - task: gulp@1
-  displayname: 'gulp'
+  displayName: 'gulp'
 
 - script: echo $(build.buildNumber) > Tailspin.SpaceGame.Web/wwwroot/buildinfo.txt
 
