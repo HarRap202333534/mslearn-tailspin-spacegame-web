@@ -64,7 +64,7 @@ steps:
   displayName: 'dotnet publish release'
   inputs:
     command: 'publish'
-    arguments: '--no-build --configuration Release --output $(Build.ArtifactsStagingDirectory)/Release'
+    arguments: '--configuration Release --output $(Build.ArtifactsStagingDirectory)/Release'
     zipAfterPublish: true
 
 - task: PublishBuildArtifacts@1
