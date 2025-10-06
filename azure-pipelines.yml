@@ -52,7 +52,7 @@ steps:
   displayName: 'dotnet publish debug'
   inputs:
     command: 'publish'
-    arguments: '--no-build --configuration Debug --output $(Build.ArtifactsStagingDirectory)/Debug'
+    arguments: '--no-build --configuration Debug --output $(Build.ArtifactsDirectory)/Debug'
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build release'
@@ -64,7 +64,7 @@ steps:
   displayName: 'dotnet publish release'
   inputs:
     command: 'publish'
-    arguments: '--configuration Release --output $(Build.ArtifactsStagingDirectory)/Release'
+    arguments: '--no-build --configuration Release --output $(Build.ArtifactsDirectory)/Release'
     zipAfterPublish: true
 
 - task: PublishBuildArtifacts@1
