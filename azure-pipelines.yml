@@ -14,7 +14,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   dotnetSdkVersion: '8.0.x'
-  wwwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
+  wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
 
 steps:
 - task: UseDotNet@2
@@ -30,7 +30,7 @@ steps:
 - task: Npm@1
   displayName: 'npm install'
 
-- script: ./node_modules/.bin/node-sass $(wwwwrootDir) --output $(wwwwrootDir)
+- script: ./node_modules/.bin/node-sass $(wwwrootDir) --output $(wwwrootDir)
   displayName: 'node-sass'
 
 - task: gulp@1
