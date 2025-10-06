@@ -13,8 +13,19 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  dotnetSdkVersion: '6.x'
 
 steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET SDK $(dotnetSdkVersion)'
+  inputs:
+    version: '$(dotnetSdkVersion)'
+
+- task: UseNode@1
+  displayName: 'Use Node.js 16.x'
+  inputs:
+    version: '16.x'
+
 - task: Npm@1
   displayName: 'npm install'
 
