@@ -15,9 +15,6 @@ variables:
 steps:
 - task: Npm@1
   displayName: 'npm install'
-  inputs:
-    arguments: '--quiet'
-    verbose: false
 
 - script: node-sass Tailspin.SpaceGame.Web/wwwroot
   displayName: 'node-sass'
