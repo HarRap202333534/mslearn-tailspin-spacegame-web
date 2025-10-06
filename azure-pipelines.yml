@@ -7,11 +7,51 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: ubuntu-22.04
 
 variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    arguments: '--silent'
+    verbose: false
+
+- script: node-sass Tailspin.SpaceGame.Web/wwwroot
+  displayName: 'node-sass'
+
+- task: gulp@1
+  displayname: 'gulp'
+
+- script: echo $(build.buildNumber) > Tailspin.SpaceGame.Web/wwwroot/buildinfo.txt
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet restore'
+  inputs:
+    command: 'restore'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build debug'
+  inputs:
+    command: 'build'
+    arguments: '--configuration Debug'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet publish debug'
+  inputs:
+    command: 'publish'
+    arguments: '--no-build --configuration Debug --output /tmp/Debug'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build release'
+  inputs:
+    command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet publish release'
+  inputs:
+    command: 'publish'
+    arguments: '--no-build --configuration Debug --output /tmp/Release'
