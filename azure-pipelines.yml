@@ -13,7 +13,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  dotnetSdkVersion: '5.x'
+  dotnetSdkVersion: '8.0.x'
 
 steps:
 - task: UseDotNet@2
